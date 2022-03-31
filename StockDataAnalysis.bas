@@ -24,11 +24,12 @@ Sub StockDataAnalysis()
         
         'Initializing variables
         Ticker_Name = " "
-        Ticker_Counter_Start = 2 'Counter to find the open price and its ticker
-        Yearly_Change = 0
+        'Counter to find the open price and its ticker
+        Ticker_Counter_Start = 2
         Percent_Change = 0
         Total_Stock_Volume = 0
-        Ticker_Counter_End = 2 'Counter to find the close price of the corresponding open price
+        'Counter to find the close price of the corresponding open price
+        Ticker_Counter_End = 2
         
         For i = 2 To LastRowWs
             'The ticker symbol
@@ -36,8 +37,12 @@ Sub StockDataAnalysis()
                 ws.Cells(Ticker_Counter_Start, 9).Value = ws.Cells(i, 1).Value
                 'Yearly Change
                 ws.Cells(Ticker_Counter_Start, 10).Value = ws.Cells(i, 6).Value - ws.Cells(Ticker_Counter_End, 3).Value
-        
-        
+                    'Conditional formatting showing -ve values highlighted in red and +ve in green
+                    If ws.Cells(Ticker_Counter_Start, 10).Value < 0 Then
+                        ws.Cells(Ticker_Counter_Start, 10).Interior.ColorIndex = 3
+                    Else
+                        ws.Cells(Ticker_Counter_Start, 10).Interior.ColorIndex = 4
+                    End If
              Ticker_Counter_Start = Ticker_Counter_Start + 1
              Ticker_Counter_End = i + 1
             End If
