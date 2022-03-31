@@ -24,19 +24,22 @@ Sub StockDataAnalysis()
         
         'Initializing variables
         Ticker_Name = " "
-        Ticker_Counter = 2
-        Opening_Price = 0
-        Closing_Price = 0
+        Ticker_Counter_Start = 2 'Counter to find the open price and its ticker
         Yearly_Change = 0
         Percent_Change = 0
         Total_Stock_Volume = 0
-        
+        Ticker_Counter_End = 2 'Counter to find the close price of the corresponding open price
         
         For i = 2 To LastRowWs
-        'The ticker symbol
-            If ws.Cells(i + 1, 1) <> ws.Cells(i, 1) Then
-                ws.Cells(Ticker_Counter, 9).Value = ws.Cells(i, 1).Value
-                Ticker_Counter = Ticker_Counter + 1
+            'The ticker symbol
+            If ws.Cells(i, 1) <> ws.Cells(i + 1, 1) Then
+                ws.Cells(Ticker_Counter_Start, 9).Value = ws.Cells(i, 1).Value
+                'Yearly Change
+                ws.Cells(Ticker_Counter_Start, 10).Value = ws.Cells(i, 6).Value - ws.Cells(Ticker_Counter_End, 3).Value
+        
+        
+             Ticker_Counter_Start = Ticker_Counter_Start + 1
+             Ticker_Counter_End = i + 1
             End If
          Next i
         
