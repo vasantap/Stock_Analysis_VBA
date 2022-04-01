@@ -26,6 +26,7 @@ Sub StockDataAnalysis()
         Ticker_Name = " "
         'Counter to find the open price and its ticker
         Ticker_Counter_Start = 2
+        Yearly_Change = 0
         Percent_Change = 0
         Total_Stock_Volume = 0
         'Counter to find the close price of the corresponding open price
@@ -35,17 +36,30 @@ Sub StockDataAnalysis()
             'The ticker symbol
             If ws.Cells(i, 1) <> ws.Cells(i + 1, 1) Then
                 ws.Cells(Ticker_Counter_Start, 9).Value = ws.Cells(i, 1).Value
+                
                 'Yearly Change
                 ws.Cells(Ticker_Counter_Start, 10).Value = ws.Cells(i, 6).Value - ws.Cells(Ticker_Counter_End, 3).Value
-                    'Conditional formatting showing -ve values highlighted in red and +ve in green
-                    If ws.Cells(Ticker_Counter_Start, 10).Value < 0 Then
-                        ws.Cells(Ticker_Counter_Start, 10).Interior.ColorIndex = 3
-                    Else
-                        ws.Cells(Ticker_Counter_Start, 10).Interior.ColorIndex = 4
-                    End If
+                Yearly_Change = ws.Cells(Ticker_Counter_Start, 10).Value
+                
+                'Conditional formatting showing -ve values highlighted in red and +ve in green
+                If ws.Cells(Ticker_Counter_Start, 10).Value < 0 Then
+                    ws.Cells(Ticker_Counter_Start, 10).Interior.ColorIndex = 3
+                Else
+                    ws.Cells(Ticker_Counter_Start, 10).Interior.ColorIndex = 4
+                End If
+  
+                'Percentage change after checking for denominator not zero
+                If ws.Cells(Ticker_Counter_End, 3).Value <> 0 Then
+                    Percent_Change = Yearly_Change / ws.Cells(Ticker_Counter_End, 3).Value
+                    'Format with %
+                    ws.Cells(Ticker_Counter_Start, 11).Value = Format(Percent_Change, "Percent")
+                Else
+                    ws.Cells(Ticker_Counter_Start, 11).Value = Format(0, "Percent")
+                End If
+                
              Ticker_Counter_Start = Ticker_Counter_Start + 1
              Ticker_Counter_End = i + 1
-            End If
+          End If
          Next i
         
     Next ws
