@@ -35,9 +35,9 @@ Sub StockDataAnalysis()
         For i = 2 To LastRowWs
                         
             'The ticker symbol
-            If ws.Cells(i, 1) <> ws.Cells(i + 1, 1) Then
+            If ws.Cells(i + 1, 1) <> ws.Cells(i, 1) Then
                 ws.Cells(Ticker_Counter_Start, 9).Value = ws.Cells(i, 1).Value
-               
+                
                 'Yearly Change
                 ws.Cells(Ticker_Counter_Start, 10).Value = ws.Cells(i, 6).Value - ws.Cells(Ticker_Counter_End, 3).Value
                 Yearly_Change = ws.Cells(Ticker_Counter_Start, 10).Value
@@ -60,13 +60,15 @@ Sub StockDataAnalysis()
                 End If
                 
                 'Total stock volume is sum of block of cells from ticker counter start to ticker counter end
-                 Total_Stock_Volume = Total_Stock_Volume + Cells(i, 7).Value
-                Cells(Ticker_Counter_End, 12).Value = Total_Stock_Volume
-                Ticker_Counter_Start = Ticker_Counter_Start + 1
-                Total_Stock_Volume = 0
-                Ticker_Counter_End = i + 1
-              Else
                 Total_Stock_Volume = Total_Stock_Volume + Cells(i, 7).Value
+                Cells(Ticker_Counter_Start, 12).Value = Total_Stock_Volume
+                Ticker_Counter_Start = Ticker_Counter_Start + 1
+                Ticker_Counter_End = i + 1
+                Total_Stock_Volume = 0
+             Else
+                Total_Stock_Volume = Total_Stock_Volume + Cells(i, 7).Value
+                Cells(Ticker_Counter_Start, 12).Value = Total_Stock_Volume
+
              End If
         Next i
     Next ws
