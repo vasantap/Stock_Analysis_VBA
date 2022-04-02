@@ -7,10 +7,10 @@ Analyzing Wall Street Stocks data using Excel VBA
 ## Overview of the Project
 #### This objective of the project was to create a script that loops through all the stocks
 #### for one year and outputs the following:
-    1.	The Ticker symbols.
-    2.	Yearly change from opening price at the beginning of a given year to the closing
+    1.  The Ticker symbols.
+    2.  Yearly change from opening price at the beginning of a given year to the closing
         price at the end of that year in $ format. 
-    3.	The percent change from opening price at the beginning of a given year to the
+    3.  The percent change from opening price at the beginning of a given year to the
         closing price at the end of that year while applying conditional formatting
         that will highlight positive change in green and negative change in red.
     4.  The total stock volume of the stock.
