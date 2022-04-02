@@ -21,7 +21,7 @@ Sub StockDataAnalysis()
         ws.Range("K1").Value = "Percent Change"
         ws.Range("L1").Value = "Total Stock Volume"
         
-         'BONUS
+        'BONUS
         'Add script to return the stock with Greatest % increase, Greatest % decrease and Greatest total volume
         ws.Range("O2").Value = "Greatest % Increase"
         ws.Range("O3").Value = "Greatest % Decrease"
@@ -40,6 +40,7 @@ Sub StockDataAnalysis()
         Ticker_Counter_End = 2
         Total_Stock_Volume = 0
         
+        'BONUS
         'Initialize variables and set values of variables initially to the first row in the list.
         greatest_percent_increase = ws.Cells(2, 11).Value
         greatest_percent_increase_ticker = ws.Cells(2, 9).Value
@@ -57,6 +58,7 @@ Sub StockDataAnalysis()
                 'Yearly Change
                 ws.Cells(Ticker_Counter_Start, 10).Value = ws.Cells(i, 6).Value - ws.Cells(Ticker_Counter_End, 3).Value
                 Yearly_Change = ws.Cells(Ticker_Counter_Start, 10).Value
+                ws.Cells(Ticker_Counter_Start, 10).Value = Format(Yearly_Change, "###0.00")
                 
                 'Conditional formatting showing -ve values highlighted in red and +ve in green
                 If ws.Cells(Ticker_Counter_Start, 10).Value < 0 Then
@@ -106,6 +108,7 @@ Sub StockDataAnalysis()
             End If
         Next i
         
+        'BONUS
         'Show on worksheet.
         Range("P2").Value = Format(greatest_percent_increase_ticker, "Percent")
         Range("Q2").Value = Format(greatest_percent_increase, "Percent")
