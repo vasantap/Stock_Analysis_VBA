@@ -5,10 +5,14 @@ Analyzing Wall Street Stocks data using Excel VBA
 
 
 ## Overview of the Project
-#### This objective of the project was to create a script that loops through all the stocks for one year and outputs the following:
+#### This objective of the project was to create a script that loops through all the stocks
+#### for one year and outputs the following:
     1.	The Ticker symbols.
-    2.	Yearly change from opening price at the beginning of a given year to the closing price at the end of that year in $ format. 
-    3.	The percent change from opening price at the beginning of a given year to the closing price at the end of that year while applying conditional formatting that will highlight positive change in green and negative change in red.
+    2.	Yearly change from opening price at the beginning of a given year to the closing
+        price at the end of that year in $ format. 
+    3.	The percent change from opening price at the beginning of a given year to the
+        closing price at the end of that year while applying conditional formatting
+        that will highlight positive change in green and negative change in red.
     4.  The total stock volume of the stock.
 #### The data was given in two Excel sheets. They contained ticker value, the date the stock was issued, the opening price, closing price, highest and lowest price and finally the volume of the stock. Using this data, a script was created to loop through all the worksheets to initially get the opening price of a given ticker at the beginning of the year and then find the corresponding closing price at the end of the year to find out the Yearly change. Percent change was calculated by taking the ratio of the Yearly change and opening price and formatted to a percent. Finally, the Total stock volume for all the stocks of a ticker was calculated. These results were used to analyze and find the ticker and its value which had the greatest percentage increase, greatest percentage decrease and greatest total volume.
 #### The results of the analysis concluded that 
